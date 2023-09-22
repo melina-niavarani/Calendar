@@ -1,0 +1,34 @@
+<div class="flex items-center pt-3 mx-auto" class="relative">
+  <table class="border w-full">
+    <thead class="border">
+      <tr>
+        <th *ngFor="let day of daysOfWeek">
+          <p class="pt-3 flex justify-center items-center text-base font-medium  text-pale-gray dark:text-gray-100">{{ day }}</p>
+        </th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr class="border"  *ngFor="let week of weeks; let i = index">
+        <td class="pt-1 border" *ngFor="let day of week">
+          <div (dblclick)="openAppointmentForm(day.day)" class="py-16 px-2 cursor-pointer flex justify-center items-start">{{ day.day }}</div>
+          <div *ngIf="selectedAppointment && selectedAppointment.date === day.day" 
+          cdkDrag   (cdkDragStarted)="onDragStarted($event, selectedAppointment)"
+          (cdkDragEnded)="onDrop($event)">
+            <div class="text-center">
+              <div class="bg-fuchsia-300 relative" >
+                <span (click)="onDeleteAppointment()" class="absolute top-0 end-0 pe-1 cursor-pointer ">
+                  <i  class="fa-solid fa-xmark" style="color: #000000;"></i>
+                </span>
+                <p>{{ selectedAppointment.title }}</p>
+                <p >{{ day.day }} - {{ selectedAppointment.startTime | date:'HH:mm' }} - {{ selectedAppointment.endTime | date:'HH:mm' }}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-appointment-form *ngIf="showAppointmentForm" [selectedDate]="selectedDate" (addAppointment)="onAddAppointment($event)" (closeForm)="onCloseForm()" class="absolute top-1 left-[50%] -translate-x-[50%] w-[35rem]"></app-appointment-form>
+</div>
+
+

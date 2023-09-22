@@ -1,0 +1,8 @@
+<div class="relative">
+  <button (click)="showAppointmentForm = true; " class="block mx-auto px-12 py-5 border text-base font-medium bg-purple text-white hover:bg-pale-purple hover:text-inherit rounded-full shadow-2xl">Creat</button>
+  <div class="flex flex-col items-center px-3">
+    <mat-calendar class="w-full" [(selected)]="selectedDate"  (selectedChange)="dateChanged($event)" (monthSelected)="handleMonthSelected($event)" (yearSelected)="handleYearSelected($event)"></mat-calendar>
+  </div>
+  <app-appointment-form  *ngIf="showAppointmentForm" (addAppointment)="onAddAppointment($event)" (closeForm)="onCloseForm()" class="mx-5 py-3"></app-appointment-form>
+  <p class="text-center py-9 text-fuchsia-300 font-medium text-lg">Double click on table to submit an appointment</p>
+</div>

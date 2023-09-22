@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSubmit()" class="flex flex-col gap-10 py-10 items-center  bg-pale-purple shadow-xl rounded-md">
+  <span (click)="onClose()" class="self-end px-5 cursor-pointer ">
+    <i  class="fa-solid fa-xmark" style="color: #000000;"></i>
+  </span>
+  <section class="block w-full px-4">
+    <input [(ngModel)]="newAppointment.title" name="title" required class="py-4 ps-2 w-full shadow-md text-xl placeholder:text-pale-gray placeholder:text-xl " placeholder="Add title">
+  </section>
+
+  <section class="form-group">
+    <label for="startTime" class="me-4 text-lg">Start Time:</label>
+    <input type="datetime-local" class="text-pale-gray text-base p-2"  id="startTime" name="startTime" [(ngModel)]="newAppointment.startTime" value="{{ newAppointment.startTime | date:'yyyy-MM-ddTHH:mm' }}" required>
+  </section>
+
+  <section  class="form-group">
+    <label for="endTime" class="me-4 text-lg">End Time:</label>
+    <input type="datetime-local" class="text-pale-gray text-base p-2"  id="endTime" name="endTime" [(ngModel)]="newAppointment.endTime" value="{{ newAppointment.endTime | date:'yyyy-MM-ddTHH:mm' }}" required>
+  </section>
+
+  <button type="submit" class="block mx-auto px-12 py-5 border text-base font-medium bg-purple text-white hover:bg-white hover:text-inherit rounded-full shadow-2xl">Add Appointment</button>
+</form>
+  
