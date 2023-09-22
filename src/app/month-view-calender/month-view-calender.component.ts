@@ -89,7 +89,7 @@ export class  MonthViewCalenderComponent {
     this.selectedAppointment = appointment;
   }
 
-  onDrop(event: CdkDragDrop<string[]> ) {
+  onDrop(event: CdkDragDrop<string[]> |  any ) {
     const newDate = event.container.data[event.currentIndex];
     
     if (this.selectedAppointment) {
